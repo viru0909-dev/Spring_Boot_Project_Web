@@ -3,13 +3,11 @@ package org.studyeasy.SpringBlog.models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import lombok.Getter;
+
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 public class Authority {
     
@@ -23,5 +21,22 @@ public class Authority {
         return "Authority [id=" + id + ", name=" + name + "]";
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
     
 }
