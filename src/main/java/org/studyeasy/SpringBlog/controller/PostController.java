@@ -17,6 +17,7 @@ import org.studyeasy.SpringBlog.services.AccountService;
 import org.studyeasy.SpringBlog.services.PostService;
 
 
+
 @Controller
 public class PostController {
 
@@ -98,6 +99,21 @@ public class PostController {
           return "404";
        }
     }
+
+    @PostMapping("/posts/{id}/edit")
+    @PreAuthorize("isAuthenticated()")
+    public String updatePost(@PathVariable Long id,@ModelAttribute Post post) {
+        Optional<Post> optionalPost = postService.getById(id);
+        if(optionalPost.isPresent()){
+            Post existingPost = optionalPost.get();
+            existingPost.setTitle(post.getTitle());
+            existingPost.setBody(post.getBody());
+            postService.save(existingPost);
+        }
+        
+        return "redirect:/posts/"+post.getId();
+    }
+
 
 }
 

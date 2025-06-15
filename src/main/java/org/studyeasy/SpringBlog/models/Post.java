@@ -30,6 +30,8 @@ public class Post {
 
     private LocalDateTime createdAt;
 
+    private LocalDateTime updatedAt;
+
     @ManyToOne
     @JoinColumn(name="account_id", referencedColumnName = "id", nullable = true)
     private Account account;
@@ -73,6 +75,15 @@ public class Post {
     public void setAccount(Account account) {
         this.account = account;
     }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+   
     
 
 }
