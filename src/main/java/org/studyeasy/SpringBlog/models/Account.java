@@ -1,6 +1,7 @@
 package org.studyeasy.SpringBlog.models;
 
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.NoArgsConstructor;
 
@@ -25,13 +31,30 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+
+    @Email(message = "Invalid email")
+    @NotEmpty(message= "Email missing")
     private String email;
 
+    @NotEmpty(message= "Password missing")
     private String password;
 
+    @NotEmpty(message= "FirstName missing")
     private String firstname;
 
+    @NotEmpty(message= "LastName missing")
     private String lastname;
+
+    private String gender;
+
+    @Min(value=18)
+    @Max(value=99)
+    private int age;
+
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate date_of_birth;
+
+    private String photo;
 
     private String role; 
 
@@ -115,6 +138,39 @@ public class Account {
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
     }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public LocalDate getDate_of_birth() {
+        return date_of_birth;
+    }
+
+    public void setDate_of_birth(LocalDate date_of_birth) {
+        this.date_of_birth = date_of_birth;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
 
 
     

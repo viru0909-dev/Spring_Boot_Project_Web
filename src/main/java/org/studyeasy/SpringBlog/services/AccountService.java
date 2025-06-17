@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,8 +20,15 @@ import org.studyeasy.SpringBlog.models.Authority;
 import org.studyeasy.SpringBlog.repositories.AccountRepository;
 import org.studyeasy.SpringBlog.util.constants.Roles;
 
+
+
 @Service
 public class AccountService implements UserDetailsService{
+
+    @Value("${spring.mvc.static-path-pattern}")
+    private String photo_prefix;
+
+
     @Autowired
     private AccountRepository accountRepository;
 
@@ -31,6 +39,10 @@ public class AccountService implements UserDetailsService{
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         if (account.getRole() == null){
             account.setRole(Roles.USER.getRole());
+        }
+        if (account.getPhoto() == null){
+            String path = photo_prefix.replace("*", "images/person.png");
+            account.setPhoto(path);
         }
         return accountRepository.save(account);    
     }
