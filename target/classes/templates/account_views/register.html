@@ -28,14 +28,14 @@
                 th:object="${account}"
                 method="post">
               <div>
-                <input id="email" type="email" th:field="*{email}" class="form-control" placeholder="Email" />
+                <input id="email" name="email" type="email" th:field="*{email}" class="form-control" placeholder="Email" />
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger" role="alert">Email Error</p>
               </div>
               <div>
                 <input id="password" type="password" th:field="*{password}" class="form-control" placeholder="Password" />
               </div>
               <div>
                 <input id="firstname" type="text" th:field="*{firstname}" class="form-control" placeholder="First name" />
-              </div>
               </div>
               <div class="btn_box">
                 <button type="submit">

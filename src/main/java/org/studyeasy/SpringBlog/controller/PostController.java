@@ -18,6 +18,7 @@ import org.studyeasy.SpringBlog.services.PostService;
 
 
 
+
 @Controller
 public class PostController {
 
@@ -115,6 +116,20 @@ public class PostController {
     }
 
 
+    @GetMapping("/posts/{id}/delete")
+    @PreAuthorize("isAuthenticated()")
+    public String deletePost(@PathVariable Long id) {
+        Optional<Post> optionalPost = postService.getById(id);
+        if(optionalPost.isPresent()){
+            Post post = optionalPost.get();
+            postService.delete(post);
+            return  "redirect:/";
+        }else{
+            return "redirect:/?error";
+        }
+    }
+    
+    
 }
 
 
