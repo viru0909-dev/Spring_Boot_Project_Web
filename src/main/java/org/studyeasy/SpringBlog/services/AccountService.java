@@ -41,7 +41,7 @@ public class AccountService implements UserDetailsService{
             account.setRole(Roles.USER.getRole());
         }
         if (account.getPhoto() == null){
-            String path = photo_prefix.replace("*", "images/person.png");
+            String path = photo_prefix.replace("**", "images/person.png");
             account.setPhoto(path);
         }
         return accountRepository.save(account);    

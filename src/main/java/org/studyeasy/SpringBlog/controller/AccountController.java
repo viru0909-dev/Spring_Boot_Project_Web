@@ -1,8 +1,12 @@
 package org.studyeasy.SpringBlog.controller;
 
+import java.security.Principal;
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,8 +44,23 @@ public class AccountController {
     }
 
     @GetMapping("/profile")
-    public String profile(Model model){
-        return "account_views/profile";
+    @PreAuthorize("isAuthenticated()")
+    public String profile(Model model,Principal principal){
+        String authUser = "email";
+        if(principal != null){
+           authUser = principal.getName(); 
+
+        }
+        Optional<Account> optionalAccount = accountService.findOneByEmail(authUser);
+        if(optionalAccount.isPresent()){
+            Account account = optionalAccount.get();
+            model.addAttribute("account",account);
+            model.addAttribute("photo",account.getPhoto());
+            return "account_views/profile";
+        }else{
+          return "redirect:/?error";
+        }
+
     }
 
 
