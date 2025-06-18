@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -49,7 +50,6 @@ public class AccountController {
         String authUser = "email";
         if(principal != null){
            authUser = principal.getName(); 
-
         }
         Optional<Account> optionalAccount = accountService.findOneByEmail(authUser);
         if(optionalAccount.isPresent()){
@@ -63,6 +63,34 @@ public class AccountController {
 
     }
 
+    @PostMapping("/profile")
+    @PreAuthorize("isAuthenticated()")
+    public String post_profile(@Valid @ModelAttribute Account account, BindingResult bindingResult, Principal principal){
+        if(bindingResult.hasErrors()){
+            return "account_views/profile";
+        }
+        String authUser = "email";
+        if(principal != null){
+           authUser = principal.getName(); 
+        }
+        Optional<Account> optionalAccount = accountService.findOneByEmail(authUser);
+        if(optionalAccount.isPresent()){
+            Account account_by_id = accountService.findById(account.getId()).get();
+            account_by_id.setAge(account.getAge());
+            account_by_id.setDate_of_birth(account.getDate_of_birth());
+            account_by_id.setFirstname(account.getFirstname());
+            account_by_id.setGender(account.getGender());
+            account_by_id.setLastname(account.getLastname());
+            account_by_id.setPassword(account.getPassword());
+
+
+            accountService.save(account_by_id);
+            SecurityContextHolder.clearContext();
+            return "redirect:/"; 
+        }else{
+            return "redirect:/?error";
+        }
+    }
 
     
 }
