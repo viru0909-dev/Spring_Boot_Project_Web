@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 
 
 import lombok.NoArgsConstructor;
@@ -23,9 +24,11 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @NotBlank(message="Missing Post title")
     private String title;
 
     @Column(columnDefinition = "TEXT")
+    @NotBlank(message="Missing Post Body")
     private String body;
 
     private LocalDateTime createdAt;
