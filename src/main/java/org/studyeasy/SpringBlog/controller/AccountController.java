@@ -30,7 +30,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.studyeasy.SpringBlog.models.Account;
 import org.studyeasy.SpringBlog.services.AccountService;
 import org.studyeasy.SpringBlog.util.AppUtil;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import org.studyeasy.SpringBlog.services.EmailService;
+import org.studyeasy.SpringBlog.util.email.EmailDetails;
 
 
 
@@ -40,6 +42,9 @@ public class AccountController {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private EmailService emailService;
     
     @Value("${spring.mvc.static-path-pattern}")
     private String photo_prefix;
@@ -169,22 +174,31 @@ public class AccountController {
     }
 
     @PostMapping("/reset-password")
-    public String reset_password(@RequestParam("email") String _email,RedirectAttributes attributes, Model model) {
+    public String reset_password(@RequestParam("email") String _email, RedirectAttributes attributes, Model model) {
+        Optional<Account> optional_account = accountService.findOneByEmail(_email);
+        if (optional_account.isPresent()) {
+            Account account = accountService.findById(optional_account.get().getId()).get();
+            String reset_token = UUID.randomUUID().toString();
+            account.setPassword_reset_token(reset_token);
+            account.setPassword_reset_token_expriry(LocalDateTime.now().plusMinutes(password_token_timeout));
+            accountService.save(account);
+            String reset_message = "This is the reset password link: http://localhost/reset-password?token"+reset_token;
+            EmailDetails emailDetails = new EmailDetails(account.getEmail(), reset_message, "Reset password Virendra_Gadekar");
+            if(emailService.sendSimpleEmail(emailDetails) == false){
+                attributes.addFlashAttribute("error", "Error while sending email, contact admin");
+                return "redirect:/forgot-password";
+            }
+            attributes.addFlashAttribute("message", "Password reset email sent");
+            return "redirect:/login";
 
-      Optional<Account> optional_account = accountService.findOneByEmail(_email);
-      if(optional_account.isPresent()){
-        Account account = accountService.findById(optional_account.get().getId()).get();
-        String reset_token = UUID.randomUUID().toString();
-        account.setPassword_reset_token(reset_token);
-        account.setPassword_reset_token_expriry(LocalDateTime.now().plusMinutes(password_token_timeout));
-        accountService.save(account);
-        attributes.addFlashAttribute("message","Password reset email sent");
-        return "redirect:/login";
-      }else{
-         attributes.addFlashAttribute("error","No user found with the email supplied");
-        return "redirect:/forgot-password";
-      }
+        } else {
+            attributes.addFlashAttribute("error", "No user found with the email supplied");
+            return "redirect:/forgot-password";
+
+        }
+
     }
+
     
     
 }

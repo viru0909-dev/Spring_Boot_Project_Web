@@ -1,11 +1,14 @@
 package org.studyeasy.SpringBlog.util.email;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class emailDetails {
-     
-    private String recipient;
-    private String msgBody;
-    private String subject;
+@NoArgsConstructor
+@AllArgsConstructor
+public class EmailDetails {
+        private String recipient;
+        private String msgBody;
+        private String subject;
 }

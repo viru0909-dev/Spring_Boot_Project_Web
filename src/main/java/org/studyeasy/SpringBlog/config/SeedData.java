@@ -54,7 +54,7 @@ public class SeedData implements CommandLineRunner{
        account01.setGender("Male");
 
 
-       account02.setEmail("admin@admin.com");
+       account02.setEmail("gadekarvirendra4@gmail.com");
        account02.setPassword("pass987");
        account02.setFirstname("Admin");
        account02.setLastname("lastname");
