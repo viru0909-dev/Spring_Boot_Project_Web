@@ -49,6 +49,9 @@ public class AccountController {
     @Value("${spring.mvc.static-path-pattern}")
     private String photo_prefix;
 
+    @Value("${site.domain}")
+    private String site_domain;
+
     @Value("${password.token.reset.timeout.minutes}")
     private int password_token_timeout;
 
@@ -179,10 +182,10 @@ public class AccountController {
         if (optional_account.isPresent()) {
             Account account = accountService.findById(optional_account.get().getId()).get();
             String reset_token = UUID.randomUUID().toString();
-            account.setPassword_reset_token(reset_token);
+            account.setToken(reset_token);
             account.setPassword_reset_token_expriry(LocalDateTime.now().plusMinutes(password_token_timeout));
             accountService.save(account);
-            String reset_message = "This is the reset password link: http://localhost/reset-password?token"+reset_token;
+            String reset_message = "This is the reset password link: "+site_domain+"change-password?token="+reset_token;
             EmailDetails emailDetails = new EmailDetails(account.getEmail(), reset_message, "Reset password Virendra_Gadekar");
             if(emailService.sendSimpleEmail(emailDetails) == false){
                 attributes.addFlashAttribute("error", "Error while sending email, contact admin");
@@ -195,8 +198,25 @@ public class AccountController {
             attributes.addFlashAttribute("error", "No user found with the email supplied");
             return "redirect:/forgot-password";
 
-        }
+        } 
 
+    }
+
+    @GetMapping("/change-password")
+    public String change_password(Model model,@RequestParam("token") String token, RedirectAttributes attributes){
+         Optional<Account> optional_account = accountService.findByToken(token);
+         if(optional_account.isPresent()){
+            long account_id = optional_account.get().getId();
+            LocalDateTime now = LocalDateTime.now();
+            if(now.isAfter(optional_account.get().getPassword_reset_token_expriry())){
+                attributes.addFlashAttribute("error", "Token Expired");
+                return "redirect:/forgot-password";
+            }
+            model.addAttribute("account_id",account_id);
+            return "account_views/change_password";
+         }
+        attributes.addFlashAttribute("error", "Invaild token");
+        return "redirect:/forgot-password";
     }
 
     

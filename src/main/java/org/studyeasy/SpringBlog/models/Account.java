@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +29,8 @@ import lombok.Setter;
 
 
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 public class Account {
     @Id
@@ -64,7 +67,9 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<Post> posts;
 
-    private  String password_reset_token;
+    @Column(name="token")
+    private  String token;
+
 
     private LocalDateTime password_reset_token_expriry;
 
@@ -81,121 +86,4 @@ public class Account {
                 + ", lastname=" + lastname + ", role=" + role + ", posts=" + posts + ", authorities=" + authorities
                 + "]";
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
-    public Set<Authority> getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(Set<Authority> authorities) {
-        this.authorities = authorities;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public LocalDate getDate_of_birth() {
-        return date_of_birth;
-    }
-
-    public void setDate_of_birth(LocalDate date_of_birth) {
-        this.date_of_birth = date_of_birth;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public String getPassword_reset_token() {
-        return password_reset_token;
-    }
-
-    public void setPassword_reset_token(String password_reset_token) {
-        this.password_reset_token = password_reset_token;
-    }
-
-    public LocalDateTime getPassword_reset_token_expriry() {
-        return password_reset_token_expriry;
-    }
-
-    public void setPassword_reset_token_expriry(LocalDateTime password_reset_token_expriry) {
-        this.password_reset_token_expriry = password_reset_token_expriry;
-    }
-
-
-
-
-    
 }

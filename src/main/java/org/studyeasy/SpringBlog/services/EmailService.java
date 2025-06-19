@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.studyeasy.SpringBlog.util.email.EmailDetails;
 
 @Service
-public class EmailService {
+public class EmailService{
     
     @Autowired 
     private JavaMailSender javaMailSender;
@@ -26,11 +26,9 @@ public class EmailService {
             mailMessage.setSubject(emailDetails.getSubject());
 
             javaMailSender.send(mailMessage);
-            return true;
-            
+            return true;            
         } catch (Exception e) {
             return false;
         }
-    }
-    
+    }    
 }
