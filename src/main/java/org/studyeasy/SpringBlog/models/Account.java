@@ -2,6 +2,7 @@ package org.studyeasy.SpringBlog.models;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +22,9 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
@@ -60,6 +63,10 @@ public class Account {
 
     @OneToMany(mappedBy = "account")
     private List<Post> posts;
+
+    private  String password_reset_token;
+
+    private LocalDateTime password_reset_token_expriry;
 
     @ManyToMany
     @JoinTable(
@@ -170,6 +177,23 @@ public class Account {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    public String getPassword_reset_token() {
+        return password_reset_token;
+    }
+
+    public void setPassword_reset_token(String password_reset_token) {
+        this.password_reset_token = password_reset_token;
+    }
+
+    public LocalDateTime getPassword_reset_token_expriry() {
+        return password_reset_token_expriry;
+    }
+
+    public void setPassword_reset_token_expriry(LocalDateTime password_reset_token_expriry) {
+        this.password_reset_token_expriry = password_reset_token_expriry;
+    }
+
 
 
 

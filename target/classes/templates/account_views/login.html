@@ -22,6 +22,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form_container">
+            <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
             <form action="#"
                 th:action="@{/login}"
                 method="post">
