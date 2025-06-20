@@ -1,25 +1,25 @@
 package org.studyeasy.SpringBlog.security;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+@Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+@EnableMethodSecurity
 public class WebSecurityConfig {
     private static final String[] WHITELIST = {
             "/",
             "/login",
             "/register",
             "/db-console/**",
-            "/css/**",
-            "/fonts/**",
-            "/images/**",
-            "/js/**"
+            "/resources/**",
+            "/posts/**"
     };
 
 
@@ -34,10 +34,12 @@ public class WebSecurityConfig {
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers(WHITELIST).permitAll()
-                .antMatchers("/profile/**").authenticated()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/editor/**").hasAnyRole("ADMIN", "EDITOR")
+                .requestMatchers(WHITELIST).permitAll()
+                .requestMatchers("/profile/**").authenticated()
+                .requestMatchers("/profile/**").authenticated()
+                .requestMatchers("/update_photo/**").authenticated()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/editor/**").hasAnyRole("ADMIN", "EDITOR")
                 .and()
                 .formLogin()
                 .loginPage("/login").loginProcessingUrl("/login")

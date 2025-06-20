@@ -55,7 +55,7 @@ public class SeedData implements CommandLineRunner{
 
 
 
-       account02.setEmail("admin@studyeasy.org");
+       account02.setEmail("gadekarvirendra4@gmail.com");
        account02.setPassword("pass987");
        account02.setFirstname("Admin");
        account02.setLastname("lastname");

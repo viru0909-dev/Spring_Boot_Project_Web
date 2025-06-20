@@ -10,8 +10,6 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import javax.validation.Valid;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,11 +27,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.studyeasy.SpringBlog.models.Account;
 import org.studyeasy.SpringBlog.services.AccountService;
-import org.studyeasy.SpringBlog.util.AppUtil;
-
 import org.studyeasy.SpringBlog.services.EmailService;
+import org.studyeasy.SpringBlog.util.AppUtil;
 import org.studyeasy.SpringBlog.util.email.EmailDetails;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import jakarta.validation.Valid;
 
 
 

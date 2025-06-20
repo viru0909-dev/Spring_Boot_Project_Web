@@ -3,8 +3,6 @@ package org.studyeasy.SpringBlog.controller;
 import java.security.Principal;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -18,6 +16,8 @@ import org.studyeasy.SpringBlog.models.Account;
 import org.studyeasy.SpringBlog.models.Post;
 import org.studyeasy.SpringBlog.services.AccountService;
 import org.studyeasy.SpringBlog.services.PostService;
+
+import jakarta.validation.Valid;
 
 
 
