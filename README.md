@@ -1,87 +1,118 @@
-# 📝 Spring Boot Blog Website
+# Spring Blog Application
 
-This is a simple **Blog Website** built using **Spring Boot** and **HTML**.  
-It allows users to register, log in, create posts, edit them, and manage their profiles.
-
----
-
-## 🚀 **Features**
-
-✅ User Registration & Login  
-✅ Create, Edit, and Delete Posts  
-✅ User Profile Management  
-✅ Clean and simple UI  
-✅ More features coming soon!
+This is a **Spring Boot Blog Application** developed by **Virendra Gadekar**.  
+It includes user registration, login, profile management, profile photo upload, forgot password via email, and secure password reset functionality.
 
 ---
 
-## 🛠️ **Tech Stack**
+## 📌 **Features**
 
-- ⚙️ **Backend:** Spring Boot  
-- 🌐 **Frontend:** HTML (basic templates)
+- ✅ User Registration & Login
+- ✅ Profile View & Update
+- ✅ Upload & Update Profile Photo
+- ✅ Forgot Password & Email Reset Link
+- ✅ Secure Token Expiry for Password Reset
+- ✅ Simple Email Service using Gmail SMTP
+- ✅ Integrated with Thymeleaf for dynamic HTML views
 
 ---
 
-## 📸 **Screenshots**
+## ⚙️ **Tech Stack**
 
-![Blog Website Screenshot](https://github.com/user–attachments/assets/59debd07–46d0–4756–b96d–4910d541b4a)
+- **Backend:** Java 17, Spring Boot 3.x, Spring MVC, Spring Security, Spring Data JPA, Hibernate
+- **Database:** H2 Embedded DB (File-based)
+- **View:** Thymeleaf Template Engine
+- **Email:** JavaMailSender (Gmail SMTP)
+- **Build Tool:** Maven
 
 ---
 
-## 📂 **How to Run**
+## 🚀 **Getting Started**
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/viru0909-dev/Spring_Boot_Project_Web.git
-   cd Spring_Boot_Project_Web
-   
-2.	Open in your IDE (e.g., IntelliJ IDEA, VS Code)
-   
-3.	Configure Database
-	•	Update your application.properties with your DB credentials.
+### 1️⃣ **Clone the Repository**
 
-4.	Run the Application
-   ./mvnw spring-boot:run
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
 
-   or run the main class directly from your IDE.
+2️⃣ Add Secret Properties
 
-5.	Access the App
-	•	Open your browser and go to:
-    http://localhost:8080
-  	
-✅ Planned Improvements
-	•	Add comments functionality
-	•	Enhance the UI with CSS/Bootstrap
-	•	Add user roles (Admin, User)
-	•	Deploy on a cloud platform
+Create a secrect.properties file in the src/main/resources folder (or configure your .env):
+
+spring.mail.username=your-gmail@gmail.com
+spring.mail.password=your-gmail-app-password
+site.domain=http://localhost:8080/
+password.token.reset.timeout.minutes=10
+
+✅ Important:
+Use a Google App Password, not your Gmail password, for secure SMTP.
+
+3️⃣ Run the Application
+
+# Using Maven
+mvn spring-boot:run
+
+# OR using your IDE (IntelliJ, VSCode, Eclipse)
+Run `SpringBlogApplication.java`
+
+4️⃣ Access in Browser
+http://localhost:8080/
+
+src/main/java
+ ├── controller
+ │   └── AccountController.java
+ ├── service
+ │   ├── AccountService.java
+ │   ├── EmailService.java
+ ├── config
+ │   └── AppConfig.java
+ ├── model
+ │   └── Account.java
+ ├── repository
+ │   └── AccountRepository.java
+ ├── SpringBlogApplication.java
+
+Templates: src/main/resources/templates/account_views/
+Static files: src/main/resources/static/
+
+📧 Email Configuration
+
+Uses Gmail SMTP:
+	•	smtp.gmail.com
+	•	Port 587
+	•	TLS enabled
+
+Ensure:
+	•	Less secure app access is OFF.
+	•	Use an App Password for best security.
 
 ⸻
 
-🤝 Contributing
-
-Pull requests are welcome!
-For major changes, please open an issue first to discuss what you would like to change.
+⚠️ Troubleshooting
+	•	DB Locked Error: Close other instances or run in server mode.
+	•	Email Not Sending: Check Gmail App Password or SMTP config.
+	•	Fragments Warning: Use ~{} syntax in Thymeleaf fragments.
 
 ⸻
 
-📧 Contact
+🙌 Author
 
-Created by @viru0909-dev — feel free to reach out!
+Made with ❤️ by Virendra Gadekar
 
+⸻
 
-📜 License
+📃 License
 
-This project is licensed under the MIT License.
-
----
-
-## ✔️ **How to use this**
-
-1️⃣ Copy the markdown above.  
-2️⃣ Replace any placeholder links or text (like your username).  
-3️⃣ Paste it into your `README.md`.  
-4️⃣ Commit and push!
+Open source for learning purposes.
+Feel free to fork, modify, and improve!
 
 ---
 
-If you want, I can write a version **with badges**, too (like build status, license, etc.). Want that? 🚀✨
+## ✅ **How to Use**
+
+1️⃣ Save this as `README.md` in your project root.  
+2️⃣ Push to GitHub:  
+```bash
+git add README.md
+git commit -m "Add detailed README"
+git push origin main
