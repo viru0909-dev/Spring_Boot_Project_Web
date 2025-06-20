@@ -12,7 +12,8 @@
     <header th:replace="/fragments/header :: header">
   </div>
 
-    <!-- about section -->
+  
+  <!-- about section -->
   <form action="/" , method="get">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <span class="navbar-brand">Sort by: </span>
@@ -57,11 +58,22 @@
         <h3><a th:href="@{'/posts/' + ${post.id}}" th:text="${post.title}">Title</a></h3>
         <h5 th:text="'Author: '+ ${post.account.firstname} + 
         ' | Created at: '+${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')} +
-        ' | Update at: '+${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm')}"></h5>
+        ' | Updated at: '+${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm')}"></h5>
         <p th:utext="${post.body}">body</p>
         <hr color="grey"/>
       </div>
     </div>
+
+    <nav th:if="${links ne null}" aria-label="...">
+      <ul class="pagination justify-content-center">
+        <th:block th:each="link: ${links}">
+          <li class="page-item">
+            <th:block th:utext="${link}">link</th:block>
+          </li>
+        </th:block>
+      </ul>
+    </nav>
+    
   </section>
   <footer th:replace="/fragments/footer :: footer">
 </body>
