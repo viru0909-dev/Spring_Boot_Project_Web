@@ -19,7 +19,9 @@ public class WebSecurityConfig {
             "/register",
             "/db-console/**",
             "/resources/**",
-            "/posts/**"
+            "/posts/**",
+            "/forgot-password",
+            "/reset-password/**"
     };
 
 

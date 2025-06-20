@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="/fragments/head :: head"></head>
+<head th:replace="~{/fragments/head :: head}"></head>
 
 <body class="sub_page d-flex flex-column min-vh-100">
 
@@ -10,7 +10,7 @@
     <div class="bg-box">
       <img th:src="@{/resources/static/images/nav-bg.jpg}" alt="">
     </div>
-    <header th:replace="/fragments/header :: header"></header>
+    <header th:replace="~{/fragments/header :: header}"></header>
   </div>
 
   <!-- Admin Dashboard Section -->
@@ -53,7 +53,7 @@
   </main>
 
   <!-- Sticky Footer -->
-  <footer th:replace="/fragments/footer :: footer"></footer>
+  <footer th:replace="~{/fragments/footer :: footer}"></footer>
 
 </body>
 

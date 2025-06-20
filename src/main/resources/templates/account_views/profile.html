@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="/fragments/head :: head"></head>
+<head th:replace="~{/fragments/head :: head}"></head>
 
 <body class="sub_page">
 
@@ -10,7 +10,7 @@
     <div class="bg-box">
       <img th:src="@{/resources/static/images/nav-bg.jpg}" alt="">
     </div>
-    <header th:replace="/fragments/header :: header"></header>
+    <header th:replace="~{/fragments/header :: header}"></header>
   </div>
 
   <!-- Profile Card Section -->
@@ -21,7 +21,10 @@
         <h3 class="text-center mb-4">Profile</h3>
 
         <div class="text-center mb-3">
-          <img th:src="@{${photo}}" class="rounded-circle mb-2" style="width: 120px; height: 120px; object-fit: cover;" alt="Avatar" />
+          <img th:src="@{${account.photo} ?: '/images/default-avatar.jpg'}"
+     class="rounded-circle mb-2"
+     style="width: 120px; height: 120px; object-fit: cover;"
+     alt="Avatar"/>
           <p th:text="${error}" th:if="${error ne null}" class="alert alert-danger"></p>
           <form method="post" th:action="@{/update_photo}" enctype="multipart/form-data" class="mt-2">
             <input type="file" name="file" class="form-control mb-2">
@@ -78,7 +81,7 @@
   </section>
 
   <!-- Footer -->
-  <footer th:replace="/fragments/footer :: footer"></footer>
+  <footer th:replace="~{/fragments/footer :: footer}"></footer>
 
 </body>
 

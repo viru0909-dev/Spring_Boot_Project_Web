@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-  <head th:replace="/fragments/head :: head">
+  <head th:replace="~{/fragments/head :: head}">
 
 <body class="sub_page">
 
@@ -9,7 +9,7 @@
     <div class="bg-box">
       <img th:src="@{/resources/static/images/nav-bg.jpg}" alt="">
     </div>
-    <header th:replace="/fragments/header :: header">
+    <header th:replace="~{/fragments/header :: header}">
   </div>
 <!-- Model section -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -56,7 +56,7 @@
     </div>
   </div>
 </section>
-  <footer th:replace="/fragments/footer :: footer">
+  <footer th:replace="~{/fragments/footer :: footer}">
 </body>
 
 </html>
