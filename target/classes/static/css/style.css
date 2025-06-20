@@ -1005,3 +1005,70 @@ a:focus {
   color: inherit;
 }
 /*# sourceMappingURL=style.css.map */
+
+
+.filter_section {
+  background: #ffffff; /* white background for clarity */
+  border: 1px solid #ddd; /* light grey border */
+  border-radius: 8px; /* rounded corners for modern look */
+  padding: 20px; /* inner spacing */
+  margin-bottom: 30px; /* spacing below filter box */
+}
+
+.filter-form .row {
+  justify-content: center; /* center the items horizontally */
+}
+
+.filter-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.filter-form .form-select,
+.filter-form .btn {
+  border: 1px solid #ccc; /* light border for inputs and button */
+  border-radius: 4px;
+}
+
+.filter-form .btn {
+  background-color: #007bff; /* primary color */
+  border-color: #007bff;
+  color: #fff;
+}
+
+.filter-form .btn:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+.single_post_section {
+  min-height: calc(100vh - 200px); /* keeps footer at bottom */
+}
+
+.single_post_section .card {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.single_post_section h2 {
+  font-weight: bold;
+}
+
+.single_post_section hr {
+  border-top: 1px solid #ccc;
+}
+.register_section {
+  padding: 60px 0;
+  background: #f9f9f9;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}

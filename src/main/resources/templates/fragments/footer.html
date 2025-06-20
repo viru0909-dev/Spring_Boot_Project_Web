@@ -2,79 +2,67 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <body>
-  <!-- footer section -->
+  <!-- Footer section -->
   <footer class="footer_section">
     <div class="container">
       <div class="row">
+        <!-- Contact -->
         <div class="col-md-4 footer-col">
           <div class="footer_contact">
-            <h4>
-              Contact Us
-            </h4>
+            <h4>Contact Us</h4>
             <div class="contact_link_box">
-              <a href="">
+              <a href="mailto:admin@studyeasy.org">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>
-                  gadekarvirendra4@gmail.com
-                </span>
+                <span>gadekarvirendra@gmail.com</span>
               </a>
             </div>
           </div>
         </div>
+
+        <!-- Social links -->
         <div class="col-md-4 footer-col">
           <div class="footer_detail">
-            <a href="" class="footer-logo">
-              Virendra
-            </a>
-            <p>
-              Follow me :)
-            </p>
+            <a href="#" class="footer-logo">Virendra</a>
+            <p>Follow me :)</p>
             <div class="footer_social">
-              <a href="https://www.linkedin.com/in/virendragadekar/">
-                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              <a href="https://www.facebook.com/Chaandsheikh">
+                <i class="fa fa-facebook"></i>
               </a>
-              <a href="https://www.instagram.com/viru0915/">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
+              <a href="https://www.linkedin.com/in/chand-sheikh/">
+                <i class="fa fa-linkedin"></i>
+              </a>
+              <a href="https://www.instagram.com/chaand_sheikh/">
+                <i class="fa fa-instagram"></i>
               </a>
             </div>
           </div>
         </div>
-        
-      </div>
+
       <div class="footer-info">
         <p>
           &copy; <span id="displayYear"></span> All Rights Reserved By
           <a href="https://studyeasy.org/">Virendra Gadekar</a><br><br>
-          &copy; <span id="displayYear"></span> Distributed By
+          Distributed By
           <a href="https://studyeasy.org/" target="_blank">Virendra</a>
         </p>
       </div>
     </div>
-    <!-- jQery -->
+
+    <!-- Scripts -->
     <script th:src="@{/resources/static/js/jquery-3.4.1.min.js}"></script>
-    <!-- popper js -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-      </script>
-    <!-- bootstrap js -->
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
     <script th:src="@{/resources/static/js/bootstrap.js}"></script>
-    <!-- owl slider -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-    </script>
-    <!-- isotope js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
-    <!-- nice select -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
-    <!-- custom js -->
     <script th:src="@{/resources/static/js/custom.js}"></script>
-    <!-- Text editor -->
     <script src="https://cdn.ckeditor.com/ckeditor5/35.3.2/classic/ckeditor.js"></script>
     <script>
-      ClassicEditor
-          .create( document.querySelector( '#editor' ) )
-  </script>
+      ClassicEditor.create(document.querySelector('#editor'));
+    </script>
   </footer>
-  <!-- footer section -->
 </body>
 
 </html>

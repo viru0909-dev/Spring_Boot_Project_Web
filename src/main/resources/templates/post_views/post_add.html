@@ -1,48 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-  <head th:replace="/fragments/head :: head">
+<head th:replace="/fragments/head :: head"></head>
 
-<body class="sub_page">
+<body class="sub_page d-flex flex-column min-vh-100">
 
+  <!-- Header Section -->
   <div class="hero_area">
     <div class="bg-box">
       <img th:src="@{/resources/static/images/nav-bg.jpg}" alt="">
     </div>
-    <header th:replace="/fragments/header :: header">
+    <header th:replace="/fragments/header :: header"></header>
   </div>
- <section class="food_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form_container">
-            <h3> Add post </h3>
-            <form action="#"
-                th:action="@{/posts/add}"
-                th:object="${post}"
-                method="post">
-              <div class="form-group">
-                <input type="hidden" id="account" name="account" th:field="*{account}"/> 
-                <input id="title" th:field="*{title}" name="title" type="text" class="form-control" placeholder="title" />
-                <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-danger" role="alert">Title Error</p>
-                
-              </div>
-              <div class="form-group">
-                <textarea id="editor" th:field="*{body}" name="body"></textarea>
-                <p th:if="${#fields.hasErrors('body')}" th:errors="*{body}" class="alert alert-danger" role="alert">Body Error</p>
-              </div>
-                <button type="submit"  class="btn btn-primary">
-                  Add post
-                </button>
-            </form>
-          </div>
+
+  <!-- Add Post Section -->
+  <main class="flex-fill py-5">
+    <section class="addpost_section">
+      <div class="container d-flex justify-content-center">
+        <div class="card shadow p-4" style="max-width: 600px; width: 100%;">
+          <h3 class="text-center mb-4">Add Post</h3>
+          <form th:action="@{/posts/add}" th:object="${post}" method="post">
+            <input type="hidden" id="account" name="account" th:field="*{account}"/>
+
+            <div class="mb-3">
+              <input id="title" th:field="*{title}" name="title" type="text" class="form-control" placeholder="Title" />
+              <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-danger mt-2">Title Error</p>
+            </div>
+
+            <div class="mb-3">
+              <textarea id="editor" th:field="*{body}" name="body" class="form-control" rows="8" placeholder="Write your post..."></textarea>
+              <p th:if="${#fields.hasErrors('body')}" th:errors="*{body}" class="alert alert-danger mt-2">Body Error</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Add Post</button>
+          </form>
         </div>
-    </div>
-  </section>
-  <!-- end book section -->
-  <footer th:replace="/fragments/footer :: footer">
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer always at bottom -->
+  <footer th:replace="/fragments/footer :: footer"></footer>
+
 </body>
 
 </html>

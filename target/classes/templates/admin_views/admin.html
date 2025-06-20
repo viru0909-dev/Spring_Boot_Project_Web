@@ -1,26 +1,60 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-  <head th:replace="/fragments/head :: head">
+<head th:replace="/fragments/head :: head"></head>
 
-<body class="sub_page">
+<body class="sub_page d-flex flex-column min-vh-100">
 
+  <!-- Hero / Nav -->
   <div class="hero_area">
     <div class="bg-box">
       <img th:src="@{/resources/static/images/nav-bg.jpg}" alt="">
     </div>
-    <header th:replace="/fragments/header :: header">
+    <header th:replace="/fragments/header :: header"></header>
   </div>
 
-  <!-- about section -->
+  <!-- Admin Dashboard Section -->
+  <main class="flex-fill py-5">
+    <section class="admin_section">
+      <div class="container d-flex justify-content-center">
+        <div class="card shadow p-5" style="max-width: 700px; width: 100%;">
+          <h3 class="text-center mb-4">Admin Dashboard</h3>
+          <p class="text-center text-muted mb-4">
+            Welcome, Admin! Here you can manage posts, users, and site settings.
+          </p>
 
-  <section class="about_section layout_padding">
-    <div class="container  ">
-            Admin...
-   
-    </div>
-  </section>
-  <footer th:replace="/fragments/footer :: footer">
+          <!-- Example of feature boxes you might implement later -->
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="border rounded p-3 text-center h-100">
+                <h5>Manage Posts</h5>
+                <p class="small">Create, edit, or delete blog posts.</p>
+                <a href="#" class="btn btn-sm btn-outline-primary disabled">Coming Soon</a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="border rounded p-3 text-center h-100">
+                <h5>Manage Users</h5>
+                <p class="small">View, promote, or remove users.</p>
+                <a href="#" class="btn btn-sm btn-outline-primary disabled">Coming Soon</a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="border rounded p-3 text-center h-100">
+                <h5>Site Settings</h5>
+                <p class="small">Update site configurations.</p>
+                <a href="#" class="btn btn-sm btn-outline-primary disabled">Coming Soon</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky Footer -->
+  <footer th:replace="/fragments/footer :: footer"></footer>
+
 </body>
 
 </html>
